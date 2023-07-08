@@ -143,7 +143,7 @@ html , body{
    width: 100vw;
    height: 100vh;
    position: relative;
-   background-color: red;
+   /* background-color: red; */
 }
 #page3>canvas{
     max-height: 100vh;
