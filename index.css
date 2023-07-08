@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap');
+/* font-family: 'Signika Negative', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap');
+/* font-family: 'Signika Negative', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap');
+/* font-family: 'Signika Negative', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap');
+/* font-family: 'Signika Negative', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap');
+/* font-family: 'Signika Negative', sans-serif; */
+*{
+   margin: 0%;
+   padding: 0%;
+   box-sizing: border-box;
+}
+html , body{
+   height: 100%;
+   width: 100%;
+}
+#main{
+   position: relative;
+   overflow: hidden;
+   background-color:rgb(10, 60, 206) ;
+}
+#page1{
+   height: 100vh;
+   width: 100vw;
+   /* background-color: red; */
+}
+#page1>video{
+   height: 100% ;
+   width: 100%;
+   object-fit: cover;
+}
+#page1 > nav{
+   display: flex;
+   justify-content: space-between;
+   align-items:center;
+   padding: 0px 30px;
+   position: absolute;
+   width: 100vw;
+   height: 10vh;
+   /* background-color: yellow; */
+}
+#page1>nav>img{
+   width: 10%;
+   margin-top: -4vh;
+}
+
+#right_nav>button{
+   padding: 10px 20px;
+   border-radius: 50px;
+   -webkit-border-radius: 50px;
+   -moz-border-radius: 50px;
+   -ms-border-radius: 50px;
+   -o-border-radius: 50px;
+   background-color: transparent;
+   border: 1px solid #fff;
+   color: white;
+   font-family: 'Signika Negative', sans-serif;
+   font-size: 15px;
+}
+
+#bottom_page1{
+   position: absolute;
+   bottom: 5%;
+   height: 40vh;
+   width: 50vw;
+   left: 10vw;
+   /* background-color: rgba(0,0,0,0.4); */
+}
+#bottom_page1>h1{
+   font-family: 'Signika Negative', sans-serif;
+   font-size: 6vw;
+   font-weight: lighter;
+   line-height:1 ;
+   color: #fff;
+   padding: 0px 30px;
+}
+.bottom-page1-inner{
+   position: absolute;
+   bottom: 0;
+   height: 35%;
+   width: 100%;
+   /* background-color: aquamarine;  */
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0px 30px;
+}
+.bottom-page1-inner>h4{
+   font-family: 'Signika Negative', sans-serif;
+   color: #fff;
+   font-size: 17px;
+   font-weight: 300;
+}
+.bottom-page1-inner>button{
+   padding: 10px 20px;
+   border-width: none;
+   border-radius: 50px;
+   color: #0b47e9;
+   -webkit-border-radius: 50px;
+   -moz-border-radius: 50px;
+   -ms-border-radius: 50px;
+   -o-border-radius: 50px;
+   background-color: white;
+}
+
+/*  ====================  page2 ======================== */
+
+#page2{
+   width: 100vw;
+   height: 100vh;
+   position: relative;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   font-family: 'Signika Negative', sans-serif; 
+   /* padding: 0vw 8vw; */
+   color: #fff;
+   background-color: #0a3cce;
+}
+#page2>h3{
+   width: 80%;
+   font-weight: 100;
+}
+#page2>h1{
+   width: 80%;
+   font-size: 3rem;
+   font-weight: 100;
+   line-height: 1.3;
+}
+
+#page2>h1>span{
+   opacity: 0.5;
+}
+
+
+/* ========    page3 ===================*/
+#page3{
+   width: 100vw;
+   height: 100vh;
+   position: relative;
+   background-color: red;
+}
+#page3>canvas{
+    max-height: 100vh;
+    max-width: 100vw;
+    position: relative;
+}
+
+/* ========== page4 ==================*/
+
+#page4{
+   width: 100vw;
+   height: 100vh;
+   position: relative;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   font-family: 'Signika Negative', sans-serif; 
+   /* padding: 0vw 8vw; */
+   color: #fff;
+   background-color: #0a3cce;
+}
+#page4>h3{
+   width: 80%;
+   font-weight: 100;
+}
+#page4>h1{
+   width: 80%;
+   font-size: 3rem;
+   font-weight: 100;
+   line-height: 1.3;
+}
+
+#page4>h1>span{
+   opacity: 0.5;
+}
+
+/* ==== ====== page5 ============ */
