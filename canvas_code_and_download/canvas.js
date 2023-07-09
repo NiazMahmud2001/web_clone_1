@@ -1,5 +1,5 @@
-function canvas(){
-    const canvas = document.querySelector("#page3>canvas");
+function canvas_3rd_page(){
+    const canvas = document.querySelector("#page3>canvas");  /// change here with your canvas container tag============================================
     const context = canvas.getContext("2d");
 
 canvas.width = window.innerWidth;
@@ -14,12 +14,13 @@ window.addEventListener("resize", function () {
 
 function files(index) {
   var data = `
-  //inset canvas images here (maintain sequence)
- `;
+  //enter the pics here (with maintaining the sequence=================================
+`;
+
   return data.split("\n")[index];
 }
 
-const frameCount = ;//enter the number of pics passed inside "files func"
+const frameCount = ; //enter the number of pics =======================================
 
 const images = [];
 const imageSeq = {
@@ -38,10 +39,10 @@ gsap.to(imageSeq, {
   ease: `none`,
   scrollTrigger: {
     scrub: .5,
-    trigger: `#page3`,
+    trigger: `#page3`,   /// change here with your canvas container tag============================================
     start: `top top`,
     end: `250% top`,
-    scroller: `#main`,
+    scroller: `#main`, //change the name according to wrapper tag =================================================
   },
   onUpdate: render,
 });
@@ -73,12 +74,11 @@ function scaleImage(img, ctx) {
   );
 }
 ScrollTrigger.create({
-
-  trigger: "#page3",
+  trigger: "#page3", /// change here with your canvas container tag============================================
   pin: true,
-  scroller: `#main`,
+  scroller: `#main`,/// change here with your wrapper tag======================================================
   start: `top top`,
   end: `250% top`,
 });
-}
-canvas()
+};
+canvas_3rd_page();
