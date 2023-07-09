@@ -580,3 +580,29 @@ function canvas_7th_page(){
 });
 }
 canvas_7th_page();
+
+// page7 circle ======
+gsap.to(".page7_cir", {
+   scrollTrigger: {
+      trigger: ".page7_cir",
+      start: "top bottom",
+      end: "bottom top",
+      // markers: true,
+      //pin: true,
+      scrub: true,
+      scroller: "#main",
+   },
+   scale: 2.6,
+})
+gsap.to(".page7_cir_inner", {
+   scrollTrigger: {
+      trigger: ".page7_cir_inner",
+      start: "top bottom",
+      end: "bottom top",
+      // markers: true,
+      //pin: true,
+      scrub: true,
+      scroller: "#main",
+   },
+   backgroundColor:"#0a3bce91",
+})
