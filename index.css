@@ -10,6 +10,7 @@
 /* font-family: 'Fasthand', cursive; */
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 /* font-family: 'Quicksand', sans-serif; */
+/* up==>> light font */
 @import url('https://fonts.googleapis.com/css2?family=Tajawal&display=swap');
 /* font-family: 'Tajawal', sans-serif; */
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
@@ -59,10 +60,6 @@ html , body{
 #right_nav>button{
    padding: 10px 20px;
    border-radius: 50px;
-   -webkit-border-radius: 50px;
-   -moz-border-radius: 50px;
-   -ms-border-radius: 50px;
-   -o-border-radius: 50px;
    background-color: transparent;
    border: 1px solid #fff;
    color: white;
@@ -243,7 +240,6 @@ html , body{
    max-height:100vh;
    position: relative;
 }
-
 #page7>.page7_cir{
    width: 22vw;
    height: 22vw;
@@ -288,10 +284,15 @@ html , body{
    font-family: 'Dancing Script', cursive;
    font-size: 2rem;
    font-weight: 300;
+   /* important */
    bottom: 15%;
    left: 50%;
    transform: translateX(-50%);
    text-align: center;
+}
+
+#page8>.page8_bottom>h1{
+   padding: 30px 0px;
 }
 
 .page8_bottom>button{
@@ -301,3 +302,70 @@ html , body{
     background-color: #fff;
     color: #0a3cce;
 }
+
+/*=================== page 9 ======================== */
+
+#page9{
+   width: 100vw;
+   height: 150vh;
+   position: relative;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 4vh 5vh;
+}
+.left9{
+   width: 30%;
+   height: 100%;
+   font-family: 'Playfair Display', serif; 
+   color: white;
+   font-size: 2.6vw;
+   font-weight: 100;
+   display: flex;
+   justify-content: center;
+   align-items: start;
+   /* background-color: red; */
+}
+#page9>.left9>h1{
+}
+
+.right9_supreme{
+   width: 70%;
+   height: 100%;
+   padding: 0px 5vw;
+}
+.right9_supreme>.right9_top{
+   width:100%;
+   height:37%;
+}
+.right9_supreme>.right9_top>.right9_center{
+   width: 100%;
+   height: 100%;
+   border-radius: 20px;
+   object-fit:cover;
+}
+.right9_supreme>.right9_bottom{
+   height: 100%;
+   width: 100%;
+   background-color: transparent;
+   /* padding: 10vh 0vh; */
+}
+.right9_inner{
+   display: flex;
+   align-items: start;
+   flex-direction: column;
+   width: 100%;
+   font-family: 'Quicksand', sans-serif;
+   color: #fff;
+   padding: 5vh 0vh;
+}
+.right9_inner>h1{
+   font-size: 2.5vw;
+}
+.right9_inner>p{
+   margin-top: 1vw;
+   font-size: 1.5vw;
+   width: 100%;
+}
+
+
