@@ -604,5 +604,19 @@ gsap.to(".page7_cir_inner", {
       scrub: true,
       scroller: "#main",
    },
-   backgroundColor:"#0a3bce91",
+   backgroundColor: "#0a3bce91",
+});
+
+//adding animation in page 9 ===================================
+
+gsap.to("#page9", {
+   scrollTrigger: {
+      trigger: "#page9",
+      start: "top top",
+      end: "bottom top",
+      scrub: true,
+      scroller: "#main",
+      markers:true,
+   },
+   backgroundColor:"rgba(2, 38, 142 , 1)"
 })
