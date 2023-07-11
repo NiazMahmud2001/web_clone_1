@@ -40,8 +40,8 @@ gsap.to(imageSeq, {
   scrollTrigger: {
     scrub: .5,
     trigger: `#page3`,   /// change here with your canvas container tag============================================
-    start: `top top`,
-    end: `250% top`,
+    start: `top top`,//that line determine where your canvas stops and start animation
+    end: `250% top`,//that line determine where your canvas stops and start animation
     scroller: `#main`, //change the name according to wrapper tag =================================================
   },
   onUpdate: render,
@@ -55,9 +55,9 @@ function render() {
 
 function scaleImage(img, ctx) {
   var canvas = ctx.canvas;
-  var hRatio = canvas.width / img.width;
-  var vRatio = canvas.height / img.height;
-  var ratio = Math.max(hRatio, vRatio);
+  var hRatio = canvas.width / img.width;//controls width/height of canvas images
+  var vRatio = canvas.height / img.height;//controls width/height of canvas images
+  var ratio = Math.max(hRatio, vRatio);//controls width/height of canvas images
   var centerShift_x = (canvas.width - img.width * ratio) / 2;
   var centerShift_y = (canvas.height - img.height * ratio) / 2;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -69,16 +69,16 @@ function scaleImage(img, ctx) {
     img.height,
     centerShift_x,
     centerShift_y,
-    img.width * ratio,
-    img.height * ratio
+    img.width * ratio,//controls width/height of canvas images
+    img.height * ratio//controls width/height of canvas images
   );
 }
 ScrollTrigger.create({
   trigger: "#page3", /// change here with your canvas container tag============================================
   pin: true,
   scroller: `#main`,/// change here with your wrapper tag======================================================
-  start: `top top`,
-  end: `250% top`,
+  start: `top top`,//that line determine where your canvas stops and start animation
+  end: `250% top`,//that line determine where your canvas stops and start animation
 });
 };
 canvas_3rd_page();
