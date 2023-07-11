@@ -17,6 +17,10 @@
 /* font-family: 'Dancing Script', cursive; */
 @import url('https://fonts.googleapis.com/css2?family=Agdasima&display=swap');
 /* font-family: 'Agdasima', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+/* font-family: 'Open Sans', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+/* font-family: 'Montserrat', sans-serif; */
 
 *{
    margin: 0%;
@@ -335,20 +339,21 @@ html , body{
    padding: 0px 5vw;
 }
 .right9_supreme>.right9_top{
+   position: relative;
    width:100%;
-   height:37%;
+   max-height:58vh;
+   /* overflow: hidden; */
 }
 .right9_supreme>.right9_top>.right9_center{
-   width: 100%;
-   height: 100%;
+   width: 90%;
+   max-height:58vh;
    border-radius: 20px;
    object-fit:cover;
 }
 .right9_supreme>.right9_bottom{
-   height: 100%;
+   height: 90vh;
    width: 100%;
    background-color: transparent;
-   /* padding: 10vh 0vh; */
 }
 .right9_inner{
    display: flex;
@@ -360,12 +365,175 @@ html , body{
    padding: 5vh 0vh;
 }
 .right9_inner>h1{
-   font-size: 2.5vw;
+   font-size: 2vw;
 }
 .right9_inner>p{
-   margin-top: 1vw;
-   font-size: 1.5vw;
+   margin-top: 1vh;
+   font-size: 1.2vw;
    width: 100%;
 }
+/* ===================== page10 ======================== */
+
+#page10{
+   width: 100vw;
+   height: 230vh;
+   position: relative;
+   background-color: rgb(3, 38, 142);
+}
+#page10>.page10{
+   width: 100vw;
+   height: 200vh;
+   padding: 6vh 6vw;
+}
+.page10>.page10_top{
+   background-color: transparent;
+   width: 94vw;
+   height: 10vh;
+}
+.page10>.page10_top>h1{
+   font-size: 4.5vw;
+   color: white;
+   font-family: 'Quicksand', sans-serif;
+}
+.page10>.page10_bottom{
+   width: 94vw;
+   height: 190vh;
+   display: flex;
+   align-items: flex-start;
+}
+.page10>.page10_bottom>.page10_left{
+   width: 42vw;
+   height: 180vh;
+   border-left: 1px solid rgb(10, 60, 206);
+   display: flex;
+   flex-direction: column;
+   padding: 5vh 2vh;
+}
+.page10>.page10_bottom>.page10_left>.page10_comm{
+   position: relative;
+   padding: 7vh 0vh;
+   color: rgba(255,255,255,0.3);
+}
+.page10>.page10_bottom>.page10_left>.page10_comm>h1{
+   font-family: 'Signika Negative', sans-serif;
+   font-size: 3.7vw;
+   font-weight: 100;
+}
+.page10>.page10_bottom>.page10_left>.page10_comm>h2{
+   font-family: 'Signika Negative', sans-serif;
+   font-size: 1.7vw;
+   font-weight: 100;
+}
+#page10>.page10>.page10_bottom>.page10_right{
+   width: 60vw;
+   height: 230vh;
+   position: relative;
+}
+#page10>.page10>.page10_bottom>.page10_right>canvas{
+   width: 100%;
+   height: 60vh;
+   position: relative;
+   /* margin-top: 100vh; */
+}
+
+/* ====== page 11 ============ */
+
+#page11{
+   width: 100vw;
+   height: 140vh;
+   position: relative;
+   padding-top: 5vh;
+   background-color: rgb(236, 242, 255);
+}
+
+#page11>h1{
+   /* background-color: red; */
+   font-family: 'Open Sans', sans-serif;
+   font-weight: 100;
+   font-size: 10vh;
+   padding-top: 17vh;
+   padding-bottom: 8vh;
+   padding-left: 12vw;
+   color: black;
+}
+#page11>.page11_inline{
+   display: flex;
+   position: relative;
+   padding-left: 10vw;
+   overflow-x: scroll;
+   cursor: grab;
+}
+
+.page11_1, .page11_2 , .page11_3 , .page11_4 , .page11_5 , .page11_6{
+   position: relative;
+   padding: 2vh 1vw;
+}
+#page11>.page11_inline>div>.page11_img{
+   width: 40vw;
+   height: 25vw;
+}
+#page11>.page11_inline>div>.page11_img>img{
+   position: relative;
+   width: 100%;
+   height: 100%;
+   border-radius: 30px;
+   object-fit: cover;
+   -webkit-border-radius: 30px;
+   -moz-border-radius: 30px;
+   -ms-border-radius: 30px;
+   -o-border-radius: 30px;
+}
+#page11>.page11_inline>div>.page11_text{
+   position: relative;
+   padding: 1vw;
+   font-family: 'Open Sans', sans-serif;
+}
+#page11>.page11_inline>div>.page11_text>h2{
+   position: relative;
+   padding: 1vw;
+   color: black;
+}
+#page11>.page11_inline>div>.page11_text>ul{
+   position: relative;
+   padding: 1vw;
+   color: black;
+}
+
+#page11>.page11_inline>div>.page11_text>ul{
+   list-style: url("./pics/tick.svg");
+}
+#page11>.page11_inline::-webkit-scrollbar {
+  height: 2px;
+}
+#page11>.page11_inline::-webkit-scrollbar-track {
+  background-color: #eeeded;
+  border-radius: 100px;
+}
+
+#page11>.page11_inline::-webkit-scrollbar-thumb {
+  background-color: rgb(205, 206, 251);
+  border-radius: 100px;
+}
+
+#page11>.page11_inline>.cursor_anim{
+   position: absolute;
+   display: unset;
+   width: 5vw;
+   height: 5vw;
+   border-radius: 50px;
+   background-color: aqua;
+   transition-duration: 0.2s;
+   z-index: 10;
+   -webkit-border-radius: 50px;
+   -moz-border-radius: 50px;
+   -ms-border-radius: 50px;
+   -o-border-radius: 50px;
+}
+
+
+
+
+
+
 
 
