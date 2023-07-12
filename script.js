@@ -874,7 +874,7 @@ slider.addEventListener("mousemove", (e) => {
   if (!isDown) return;
   e.preventDefault();
   const x = e.pageX - slider.offsetLeft;
-  const walk = (x - startX) * 2; //scroll-fast
+  const walk = (x - startX) * 2; //controls scroll-fast
 
   gsap.to(slider, {
     duration: 0.3,
@@ -958,4 +958,44 @@ page13_but.addEventListener("mouseleave", (e) => {
     duration: 0.3,
     delay: 0.3,
   });
+});
+
+//page14 hover animation ===============================
+var twitter = document.querySelector("#page14>.page14_top>.page14_twitter");
+var linkedin = document.querySelector("#page14>.page14_top>.page14_linkedin");
+var instagram = document.querySelector("#page14>.page14_top>.page14_instagram");
+
+twitter.addEventListener("mouseenter", (e) => {
+  gsap.to("#page14>.page14_top>.page14_twitter>a>.page14_cont>.page14_effect", {
+    height: "14.5vh",
+    duration: 0.3,
+    //ease: Power4.easeInOut,
+  });
+});
+twitter.addEventListener("mouseleave", (e) => {
+  gsap.to("#page14>.page14_top>.page14_twitter>a>.page14_cont>.page14_effect", {
+    height: "0vh",
+    duration: 0.3,
+    //ease: Power4.easeInOut,
+  });
+});
+linkedin.addEventListener("mouseenter", (e) => {
+  gsap.to(
+    "#page14>.page14_top>.page14_linkedin>a>.page14_cont>.page14_effect",
+    {
+      height: "14.5vh",
+      duration: 0.3,
+      //ease: Power4.easeInOut,
+    }
+  );
+});
+linkedin.addEventListener("mouseleave", (e) => {
+  gsap.to(
+    "#page14>.page14_top>.page14_linkedin>a>.page14_cont>.page14_effect",
+    {
+      height: "0vh",
+      duration: 0.3,
+      //ease: Power4.easeInOut,
+    }
+  );
 });

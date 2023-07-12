@@ -63,14 +63,14 @@ function scaleImage(img, ctx) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(
     img,
-    0,
-    0,
-    img.width,
-    img.height,
+    0, // 
+    0, // 
+    img.width, //width and height of the actual images inside canvas
+    img.height, //width and height of the actual images inside canvas
     centerShift_x,
     centerShift_y,
-    img.width * ratio,//controls width/height of canvas images
-    img.height * ratio//controls width/height of canvas images
+    img.width * ratio,//controls The width of the image to use (stretch or reduce the image)
+    img.height * ratio//controls The height of the image to use (stretch or reduce the image)
   );
 }
 ScrollTrigger.create({
