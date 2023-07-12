@@ -1,48 +1,46 @@
-gsap.registerPlugin(ScrollTrigger); 
-
-
-
+gsap.registerPlugin(ScrollTrigger, CustomEase);
 
 // start page2 gsap code ============================================
 var clutter = "";
-document.querySelector("#page2>h1").textContent.split(" ").forEach(function (text) {
-   clutter += `<span> ${text} </span>`;
-});
+document
+  .querySelector("#page2>h1")
+  .textContent.split(" ")
+  .forEach(function (text) {
+    clutter += `<span> ${text} </span>`;
+  });
 document.querySelector("#page2>h1").innerHTML = clutter;
 
 gsap.to("#page2>h1>span", {
-   scrollTrigger: {
-      trigger: "#page2>h1>span",
-      start: "top bottom",
-      end: "bottom top",
-      scroller: "#main",
-      scrub: 0.5,
-      // markers: true,
-   },
-   stagger: .2, 
-   opacity: 1,
-})
+  scrollTrigger: {
+    trigger: "#page2>h1>span",
+    start: "top bottom",
+    end: "bottom top",
+    scroller: "#main",
+    scrub: 0.5,
+    // markers: true,
+  },
+  stagger: 0.2,
+  opacity: 1,
+});
 // end page2 gsap code ============================================
-
 
 //start page3 canvas code =======================================
 
-function canvas_3rd_page(){
-    const canvas = document.querySelector("#page3>canvas");
-    const context = canvas.getContext("2d");
+function canvas_3rd_page() {
+  const canvas = document.querySelector("#page3>canvas");
+  const context = canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-
-window.addEventListener("resize", function () {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  render();
-});
 
-function files(index) {
-  var data = `
+  window.addEventListener("resize", function () {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    render();
+  });
+
+  function files(index) {
+    var data = `
  ./pics/frames00007.png
  ./pics/frames00010.png
  ./pics/frames00013.png
@@ -111,114 +109,113 @@ function files(index) {
  ./pics/frames00202.png
  `;
 
-  return data.split("\n")[index];
-}
+    return data.split("\n")[index];
+  }
 
-const frameCount = 67;
+  const frameCount = 67;
 
-const images = [];
-const imageSeq = {
-  frame: 1,
-};
+  const images = [];
+  const imageSeq = {
+    frame: 1,
+  };
 
-for (let i = 0; i < frameCount; i++) {
-  const img = new Image();
-  img.src = files(i);
-  images.push(img);
-}
+  for (let i = 0; i < frameCount; i++) {
+    const img = new Image();
+    img.src = files(i);
+    images.push(img);
+  }
 
-gsap.to(imageSeq, {
-  frame: frameCount - 1,
-  snap: "frame",
-  ease: `none`,
-  scrollTrigger: {
-    scrub: .5,
-    trigger: `#page3`,
+  gsap.to(imageSeq, {
+    frame: frameCount - 1,
+    snap: "frame",
+    ease: `none`,
+    scrollTrigger: {
+      scrub: 0.5,
+      trigger: `#page3`,
+      start: `top top`,
+      end: `250% top`,
+      scroller: `#main`,
+    },
+    onUpdate: render,
+  });
+
+  images[1].onload = render;
+
+  function render() {
+    scaleImage(images[imageSeq.frame], context);
+  }
+
+  function scaleImage(img, ctx) {
+    var canvas = ctx.canvas;
+    var hRatio = canvas.width / img.width;
+    var vRatio = canvas.height / img.height;
+    var ratio = Math.max(hRatio, vRatio);
+    var centerShift_x = (canvas.width - img.width * ratio) / 2;
+    var centerShift_y = (canvas.height - img.height * ratio) / 2;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(
+      img,
+      0,
+      0,
+      img.width,
+      img.height,
+      centerShift_x,
+      centerShift_y,
+      img.width * ratio,
+      img.height * ratio
+    );
+  }
+  ScrollTrigger.create({
+    trigger: "#page3",
+    pin: true,
+    scroller: `#main`,
     start: `top top`,
     end: `250% top`,
-    scroller: `#main`,
-  },
-  onUpdate: render,
-});
-
-images[1].onload = render;
-
-function render() {
-  scaleImage(images[imageSeq.frame], context);
+  });
 }
-
-function scaleImage(img, ctx) {
-  var canvas = ctx.canvas;
-  var hRatio = canvas.width / img.width;
-  var vRatio = canvas.height / img.height;
-  var ratio = Math.max(hRatio, vRatio);
-  var centerShift_x = (canvas.width - img.width * ratio) / 2;
-  var centerShift_y = (canvas.height - img.height * ratio) / 2;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(
-    img,
-    0,
-    0,
-    img.width,
-    img.height,
-    centerShift_x,
-    centerShift_y,
-    img.width * ratio,
-    img.height * ratio
-  );
-}
-ScrollTrigger.create({
-
-  trigger: "#page3",
-  pin: true,
-  scroller: `#main`,
-  start: `top top`,
-  end: `250% top`,
-});
-};
 canvas_3rd_page();
 //end page3 canvas code =====================================
 
-
 //start page 4 ===============================================
 var clutter1 = "";
-document.querySelector("#page4>h1").textContent.split(" ").forEach(function (text) {
-   clutter1 += `<span> ${text} </span>`;
-});
+document
+  .querySelector("#page4>h1")
+  .textContent.split(" ")
+  .forEach(function (text) {
+    clutter1 += `<span> ${text} </span>`;
+  });
 document.querySelector("#page4>h1").innerHTML = clutter1;
 
 gsap.to("#page4>h1>span", {
-   scrollTrigger: {
-      trigger: "#page4>h1>span",
-      start: "top bottom",
-      end: "bottom top",
-      scroller: "#main",
-      scrub: 0.5,
-      // markers: true,
-   },
-   stagger: .2, 
-   opacity: 1,
-})
+  scrollTrigger: {
+    trigger: "#page4>h1>span",
+    start: "top bottom",
+    end: "bottom top",
+    scroller: "#main",
+    scrub: 0.5,
+    // markers: true,
+  },
+  stagger: 0.2,
+  opacity: 1,
+});
 //end page4 =============================
 
-
 //start page5 canvas ====================
-function canvas_5th_page(){
-   const canvas = document.querySelector("#page5>canvas");
-   const context = canvas.getContext("2d");
+function canvas_5th_page() {
+  const canvas = document.querySelector("#page5>canvas");
+  const context = canvas.getContext("2d");
 
-   canvas.width = window.innerWidth;
-   canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
+  window.addEventListener("resize", function () {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    render();
+  });
 
-   window.addEventListener("resize", function () {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      render();
-   });
-
-   function files(index) {
-      var data = `
+  function files(index) {
+    var data = `
          ./pics/bridges00004.png 
          ./pics/bridges00007.png 
          ./pics/bridges00010.png 
@@ -274,51 +271,51 @@ function canvas_5th_page(){
          ./pics/bridges00160.png 
          ./pics/bridges00163.png  
          `;
-         return data.split("\n")[index];
-   }
+    return data.split("\n")[index];
+  }
 
-   const frameCount = 55;//enter the number of pics passed inside "files func"
+  const frameCount = 55; //enter the number of pics passed inside "files func"
 
-   const images = [];
-   const imageSeq = {
-      frame: 1,
-   };
+  const images = [];
+  const imageSeq = {
+    frame: 1,
+  };
 
-   for (let i = 0; i < frameCount; i++) {
-      const img = new Image();
-      img.src = files(i);
-      images.push(img);
-   }
+  for (let i = 0; i < frameCount; i++) {
+    const img = new Image();
+    img.src = files(i);
+    images.push(img);
+  }
 
-   gsap.to(imageSeq, {
-      frame: frameCount - 1,
-      snap: "frame",
-      ease: `none`,
-      scrollTrigger: {
-        scrub: .5,
-        trigger: `#page5`,
-        start: `top top`,
-        end: `250% top`,
-        scroller: `#main`,
-      },
-      onUpdate: render,
-   });
+  gsap.to(imageSeq, {
+    frame: frameCount - 1,
+    snap: "frame",
+    ease: `none`,
+    scrollTrigger: {
+      scrub: 0.5,
+      trigger: `#page5`,
+      start: `top top`,
+      end: `250% top`,
+      scroller: `#main`,
+    },
+    onUpdate: render,
+  });
 
-   images[1].onload = render;
+  images[1].onload = render;
 
-   function render() {
-      scaleImage(images[imageSeq.frame], context);
-   }
+  function render() {
+    scaleImage(images[imageSeq.frame], context);
+  }
 
-   function scaleImage(img, ctx) {
-      var canvas = ctx.canvas;
-      var hRatio = canvas.width / img.width;
-      var vRatio = canvas.height / img.height;
-      var ratio = Math.max(hRatio, vRatio);
-      var centerShift_x = (canvas.width - img.width * ratio) / 2;
-      var centerShift_y = (canvas.height - img.height * ratio) / 2;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(
+  function scaleImage(img, ctx) {
+    var canvas = ctx.canvas;
+    var hRatio = canvas.width / img.width;
+    var vRatio = canvas.height / img.height;
+    var ratio = Math.max(hRatio, vRatio);
+    var centerShift_x = (canvas.width - img.width * ratio) / 2;
+    var centerShift_y = (canvas.height - img.height * ratio) / 2;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(
       img,
       0,
       0,
@@ -328,56 +325,58 @@ function canvas_5th_page(){
       centerShift_y,
       img.width * ratio,
       img.height * ratio
-   );
-   }
-   ScrollTrigger.create({
-      trigger: "#page5",
-      pin: true,
-      scroller: `#main`,
-      start: `top top`,
-      end: `250% top`,
-});
+    );
+  }
+  ScrollTrigger.create({
+    trigger: "#page5",
+    pin: true,
+    scroller: `#main`,
+    start: `top top`,
+    end: `250% top`,
+  });
 }
 canvas_5th_page();
 
 //start page 6===================================
 var clutter2 = "";
-document.querySelector("#page6>h1").textContent.split(" ").forEach(function (text) {
-   clutter2 += `<span> ${text} </span>`;
-});
+document
+  .querySelector("#page6>h1")
+  .textContent.split(" ")
+  .forEach(function (text) {
+    clutter2 += `<span> ${text} </span>`;
+  });
 document.querySelector("#page6>h1").innerHTML = clutter1;
 
 gsap.to("#page6>h1>span", {
-   scrollTrigger: {
-      trigger: "#page6>h1>span",
-      start: "top bottom",
-      end: "bottom top",
-      scroller: "#main",
-      scrub: 0.5,
-      // markers: true,
-   },
-   stagger: .2, 
-   opacity: 1,
-})
+  scrollTrigger: {
+    trigger: "#page6>h1>span",
+    start: "top bottom",
+    end: "bottom top",
+    scroller: "#main",
+    scrub: 0.5,
+    // markers: true,
+  },
+  stagger: 0.2,
+  opacity: 1,
+});
 //end page 6 ==================================
 
 //start page7 =================================
-function canvas_7th_page(){
-   const canvas = document.querySelector("#page7>canvas");
-   const context = canvas.getContext("2d");
+function canvas_7th_page() {
+  const canvas = document.querySelector("#page7>canvas");
+  const context = canvas.getContext("2d");
 
-   canvas.width = window.innerWidth;
-   canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
+  window.addEventListener("resize", function () {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    render();
+  });
 
-   window.addEventListener("resize", function () {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      render();
-   });
-
-   function files(index) {
-      var data = `
+  function files(index) {
+    var data = `
                https://thisismagma.com/assets/home/lore/seq/1.webp?2
                https://thisismagma.com/assets/home/lore/seq/2.webp?2
                https://thisismagma.com/assets/home/lore/seq/3.webp?2
@@ -515,51 +514,51 @@ function canvas_7th_page(){
                https://thisismagma.com/assets/home/lore/seq/135.webp?2
                https://thisismagma.com/assets/home/lore/seq/136.webp?2
          `;
-         return data.split("\n")[index];
-   }
+    return data.split("\n")[index];
+  }
 
-   const frameCount = 136;//enter the number of pics passed inside "files func"
+  const frameCount = 136; //enter the number of pics passed inside "files func"
 
-   const images = [];
-   const imageSeq = {
-      frame: 1,
-   };
+  const images = [];
+  const imageSeq = {
+    frame: 1,
+  };
 
-   for (let i = 0; i < frameCount; i++) {
-      const img = new Image();
-      img.src = files(i);
-      images.push(img);
-   }
+  for (let i = 0; i < frameCount; i++) {
+    const img = new Image();
+    img.src = files(i);
+    images.push(img);
+  }
 
-   gsap.to(imageSeq, {
-      frame: frameCount - 1,
-      snap: "frame",
-      ease: `none`,
-      scrollTrigger: {
-        scrub: .5,
-        trigger: `#page7`,
-        start: `top top`,
-        end: `250% top`,
-        scroller: `#main`,
-      },
-      onUpdate: render,
-   });
+  gsap.to(imageSeq, {
+    frame: frameCount - 1,
+    snap: "frame",
+    ease: `none`,
+    scrollTrigger: {
+      scrub: 0.5,
+      trigger: `#page7`,
+      start: `top top`,
+      end: `250% top`,
+      scroller: `#main`,
+    },
+    onUpdate: render,
+  });
 
-   images[1].onload = render;
+  images[1].onload = render;
 
-   function render() {
-      scaleImage(images[imageSeq.frame], context);
-   }
+  function render() {
+    scaleImage(images[imageSeq.frame], context);
+  }
 
-   function scaleImage(img, ctx) {
-      var canvas = ctx.canvas;
-      var hRatio = canvas.width / img.width;
-      var vRatio = canvas.height / img.height;
-      var ratio = Math.max(hRatio, vRatio);
-      var centerShift_x = (canvas.width - img.width * ratio) / 2;
-      var centerShift_y = (canvas.height - img.height * ratio) / 2;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(
+  function scaleImage(img, ctx) {
+    var canvas = ctx.canvas;
+    var hRatio = canvas.width / img.width;
+    var vRatio = canvas.height / img.height;
+    var ratio = Math.max(hRatio, vRatio);
+    var centerShift_x = (canvas.width - img.width * ratio) / 2;
+    var centerShift_y = (canvas.height - img.height * ratio) / 2;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(
       img,
       0,
       0,
@@ -569,77 +568,81 @@ function canvas_7th_page(){
       centerShift_y,
       img.width * ratio,
       img.height * ratio
-   );
-   }
-   ScrollTrigger.create({
-      trigger: "#page7",
-      pin: true,
-      scroller: `#main`,
-      start: `top top`,
-      end: `250% top`,
-});
+    );
+  }
+  ScrollTrigger.create({
+    trigger: "#page7",
+    pin: true,
+    scroller: `#main`,
+    start: `top top`,
+    end: `250% top`,
+  });
 }
 canvas_7th_page();
 
 // page7 circle ======
 gsap.to(".page7_cir", {
-   scrollTrigger: {
-      trigger: ".page7_cir",
-      start: "top bottom",
-      end: "bottom top",
-      // markers: true,
-      //pin: true,
-      scrub: true,
-      scroller: "#main",
-   },
-   scale: 2.6,
-})
+  scrollTrigger: {
+    trigger: ".page7_cir",
+    start: "top bottom",
+    end: "bottom top",
+    // markers: true,
+    //pin: true,
+    scrub: true,
+    scroller: "#main",
+  },
+  scale: 2.6,
+});
 gsap.to(".page7_cir_inner", {
-   scrollTrigger: {
-      trigger: ".page7_cir_inner",
-      start: "top bottom",
-      end: "bottom top",
-      // markers: true,
-      //pin: true,
-      scrub: true,
-      scroller: "#main",
-   },
-   backgroundColor: "#0a3bce91",
+  scrollTrigger: {
+    trigger: ".page7_cir_inner",
+    start: "top bottom",
+    end: "bottom top",
+    // markers: true,
+    //pin: true,
+    scrub: true,
+    scroller: "#main",
+  },
+  backgroundColor: "#0a3bce91",
 });
 
 //adding animation in page 9 ===================================
 
 gsap.to("#page9", {
-   scrollTrigger: {
-      trigger: "#page9",
-      start: "top top",
-      end: "bottom 70%",
-      scrub: 0.5,
-      scroller: "#main",
-      // markers:true,
-   },
-   backgroundColor:"rgba(3, 38, 142,1)",
-})
+  scrollTrigger: {
+    trigger: "#page9",
+    start: "top top",
+    end: "bottom 70%",
+    scrub: 0.5,
+    scroller: "#main",
+    // markers:true,
+  },
+  backgroundColor: "rgba(3, 38, 142,1)",
+});
 //adding color animation on page10 =============================
 
 //adding canvas code for page 10 =========================================
-function canvas_10th_page(){
-   const canvas = document.querySelector("#page10>.page10>.page10_bottom>.page10_right>canvas");
-   const canvas1 = document.querySelector("#page10>.page10>.page10_bottom>.page10_right");
-   const context = canvas.getContext("2d");
+function canvas_10th_page() {
+  const canvas = document.querySelector(
+    "#page10>.page10>.page10_bottom>.page10_right>canvas"
+  );
+  const canvas1 = document.querySelector(
+    "#page10>.page10>.page10_bottom>.page10_right"
+  );
+  const context = canvas.getContext("2d");
 
-   canvas.width = canvas.clientWidth;
-   canvas.height = canvas.clientHeight;
+  canvas.width = canvas.clientWidth;
+  canvas.height = canvas.clientHeight;
 
-   window.addEventListener("resize", function () {
-      canvas.width = canvas.clientWidth;
-      canvas.height = canvas.clientHeight;
+  window.addEventListener("resize", function () {
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
 
-      render();
-   });
+    render();
+  });
 
-   function files(index) {
-      var data = `
+  function files(index) {
+    var data = `
                ./pics/1_1.webp 
                ./pics/2.webp 
                ./pics/3.webp 
@@ -680,52 +683,52 @@ function canvas_10th_page(){
                ./pics/38.webp 
                ./pics/39.webp 
                `;
-         return data.split("\n")[index];
-   }
+    return data.split("\n")[index];
+  }
 
-   const frameCount = 38;//enter the number of pics passed inside "files func"
+  const frameCount = 38; //enter the number of pics passed inside "files func"
 
-   const images = [];
-   const imageSeq = {
-      frame: 1,
-   };
+  const images = [];
+  const imageSeq = {
+    frame: 1,
+  };
 
-   for (let i = 0; i < frameCount; i++) {
-      const img = new Image();
-      img.src = files(i);
-      images.push(img);
-   }
+  for (let i = 0; i < frameCount; i++) {
+    const img = new Image();
+    img.src = files(i);
+    images.push(img);
+  }
 
-   gsap.to(imageSeq, {
-      frame: frameCount - 1,
-      snap: "frame",
-      ease: `none`,
-      scrollTrigger: {
-         scrub: .5,
-         trigger: `#page10>.page10>.page10_bottom>.page10_right`,
-         start: `top 20%`,
-         end: `100% bottom`,
-         scroller: `#main`,
+  gsap.to(imageSeq, {
+    frame: frameCount - 1,
+    snap: "frame",
+    ease: `none`,
+    scrollTrigger: {
+      scrub: 0.5,
+      trigger: `#page10>.page10>.page10_bottom>.page10_right`,
+      start: `top 20%`,
+      end: `100% bottom`,
+      scroller: `#main`,
       // markers:true,
-      },
-      onUpdate: render,
-   });
+    },
+    onUpdate: render,
+  });
 
-   images[1].onload = render;
+  images[1].onload = render;
 
-   function render() {
-      scaleImage(images[imageSeq.frame], context);
-   }
+  function render() {
+    scaleImage(images[imageSeq.frame], context);
+  }
 
-   function scaleImage(img, ctx) {
-      var canvas = ctx.canvas;
-      var hRatio = canvas.width / (img.width);
-      var vRatio = canvas.height / (img.height);
-      var ratio = Math.min(hRatio, vRatio);
-      var centerShift_x = (canvas.width - img.width * ratio) / 2;
-      var centerShift_y = (canvas.height - img.height * ratio) / 2;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(
+  function scaleImage(img, ctx) {
+    var canvas = ctx.canvas;
+    var hRatio = canvas.width / img.width;
+    var vRatio = canvas.height / img.height;
+    var ratio = Math.min(hRatio, vRatio);
+    var centerShift_x = (canvas.width - img.width * ratio) / 2;
+    var centerShift_y = (canvas.height - img.height * ratio) / 2;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(
       img,
       0,
       0,
@@ -735,152 +738,224 @@ function canvas_10th_page(){
       centerShift_y,
       img.width * ratio,
       img.height * ratio
-   );
-   }
-   ScrollTrigger.create({
-      trigger: "#page10>.page10>.page10_bottom>.page10_right",
-      pin: true,
-      scroller: `#main`,
-      start: `top 20%`,
-      end: `100% bottom`,
-});
+    );
+  }
+  ScrollTrigger.create({
+    trigger: "#page10>.page10>.page10_bottom>.page10_right",
+    pin: true,
+    scroller: `#main`,
+    start: `top 20%`,
+    end: `100% bottom`,
+  });
 }
 canvas_10th_page();
 
 //gsap on page10 txt====
 gsap.to(".page10_01", {
-   color:"rgba(255,255,255,1)",
-   scrollTrigger: {
-      trigger:".page10_01",
-      start: "top 70%",
-      end: "top 40%",
-      scroller: "#main",
-      scrub: true, 
-      // markers: true,
-      onLeave:()=>{
-         gsap.to(".page10_01", {
-            color: "rgba(255,255,255,0.3)",
-            scrollTrigger: {
-               trigger: ".page10_01",
-               start: "top 15%",
-               end: "top 5%",
-               scroller: "#main",
-               scrub: true,
-               // markers: true,
-            },
-         });
-      },
-   },
-})
+  color: "rgba(255,255,255,1)",
+  scrollTrigger: {
+    trigger: ".page10_01",
+    start: "top 70%",
+    end: "top 40%",
+    scroller: "#main",
+    scrub: true,
+    // markers: true,
+    onLeave: () => {
+      gsap.to(".page10_01", {
+        color: "rgba(255,255,255,0.3)",
+        scrollTrigger: {
+          trigger: ".page10_01",
+          start: "top 15%",
+          end: "top 5%",
+          scroller: "#main",
+          scrub: true,
+          // markers: true,
+        },
+      });
+    },
+  },
+});
 gsap.to(".page10_02", {
-   color:"rgba(255,255,255,1)",
-   scrollTrigger: {
-      trigger:".page10_02",
-      start: "top 70%",
-      end: "top 40%",
-      scroller: "#main",
-      scrub: true, 
-      // markers: true,
-      onLeave:()=>{
-         gsap.to(".page10_02", {
-            color: "rgba(255,255,255,0.3)",
-            scrollTrigger: {
-               trigger: ".page10_02",
-               start: "top 15%",//that line determine where your canvas stops and start animation
-               end: "top 5%",//that line determine where your canvas stops and start animation
-               scroller: "#main",
-               scrub: true,
-               // markers: true,
-            },
-         });
-      },
-   },
-})
+  color: "rgba(255,255,255,1)",
+  scrollTrigger: {
+    trigger: ".page10_02",
+    start: "top 70%",
+    end: "top 40%",
+    scroller: "#main",
+    scrub: true,
+    // markers: true,
+    onLeave: () => {
+      gsap.to(".page10_02", {
+        color: "rgba(255,255,255,0.3)",
+        scrollTrigger: {
+          trigger: ".page10_02",
+          start: "top 15%", //that line determine where your canvas stops and start animation
+          end: "top 5%", //that line determine where your canvas stops and start animation
+          scroller: "#main",
+          scrub: true,
+          // markers: true,
+        },
+      });
+    },
+  },
+});
 gsap.to(".page10_03", {
-   color:"rgba(255,255,255,1)",
-   scrollTrigger: {
-      trigger:".page10_03",
-      start: "top 70%",
-      end: "top 40%",
-      scroller: "#main",
-      scrub: true, 
-      // markers: true,
-      onLeave:()=>{
-         gsap.to(".page10_03", {
-            color: "rgba(255,255,255,0.3)",
-            scrollTrigger: {
-               trigger: ".page10_03",
-               start: "top 15%",
-               end: "top 5%",
-               scroller: "#main",
-               scrub: true,
-               // markers: true,
-            },
-         });
-      },
-   },
-})
+  color: "rgba(255,255,255,1)",
+  scrollTrigger: {
+    trigger: ".page10_03",
+    start: "top 70%",
+    end: "top 40%",
+    scroller: "#main",
+    scrub: true,
+    // markers: true,
+    onLeave: () => {
+      gsap.to(".page10_03", {
+        color: "rgba(255,255,255,0.3)",
+        scrollTrigger: {
+          trigger: ".page10_03",
+          start: "top 15%",
+          end: "top 5%",
+          scroller: "#main",
+          scrub: true,
+          // markers: true,
+        },
+      });
+    },
+  },
+});
 gsap.to(".page10_04", {
-   color:"rgba(255,255,255,1)",
-   scrollTrigger: {
-      trigger:".page10_04",
-      start: "top 70%",
-      end: "top 40%",
-      scroller: "#main",
-      scrub: true, 
-      // markers: true,
-      onLeave:()=>{
-         gsap.to(".page10_04", {
-            color: "rgba(255,255,255,0.3)",
-            scrollTrigger: {
-               trigger: ".page10_04",
-               start: "top 15%",//that line determine where your canvas stops and start animation
-               end: "top 5%",//that line determine where your canvas stops and start animation
-               scroller: "#main",
-               scrub: true,
-               // markers: true,
-            },
-         });
-      },
-   },
-})
+  color: "rgba(255,255,255,1)",
+  scrollTrigger: {
+    trigger: ".page10_04",
+    start: "top 70%",
+    end: "top 40%",
+    scroller: "#main",
+    scrub: true,
+    // markers: true,
+    onLeave: () => {
+      gsap.to(".page10_04", {
+        color: "rgba(255,255,255,0.3)",
+        scrollTrigger: {
+          trigger: ".page10_04",
+          start: "top 15%", //that line determine where your canvas stops and start animation
+          end: "top 5%", //that line determine where your canvas stops and start animation
+          scroller: "#main",
+          scrub: true,
+          // markers: true,
+        },
+      });
+    },
+  },
+});
 
 // page11 cursor animation ======================================
 //grab and slide ====
-const slider = document.querySelector('.page11_inline');
+const slider = document.querySelector(".page11_inline");
 let isDown = false;
 let startX;
 let scrollLeft;
 
-slider.addEventListener('mousedown', (e) => {
+slider.addEventListener("mousedown", (e) => {
   isDown = true;
-  slider.classList.add('active');
+  slider.classList.add("active");
   startX = e.pageX - slider.offsetLeft;
-   scrollLeft = slider.scrollLeft;
-   slider.computedStyleMap.cursor = "grabbing";
+  scrollLeft = slider.scrollLeft;
+  slider.computedStyleMap.cursor = "grabbing";
 });
-slider.addEventListener('mouseleave', () => {
-   isDown = false;
-   slider.computedStyleMap.cursor = "grab";
+slider.addEventListener("mouseleave", () => {
+  isDown = false;
+  slider.computedStyleMap.cursor = "grab";
 });
-slider.addEventListener('mouseup', () => {
-   isDown = false;
-   slider.computedStyleMap.cursor = "grab"
+slider.addEventListener("mouseup", () => {
+  isDown = false;
+  slider.computedStyleMap.cursor = "grab";
 });
-slider.addEventListener('mousemove', (e) => {
-  if(!isDown) return;
+slider.addEventListener("mousemove", (e) => {
+  if (!isDown) return;
   e.preventDefault();
   const x = e.pageX - slider.offsetLeft;
-   const walk = (x - startX)*2; //scroll-fast
+  const walk = (x - startX) * 2; //scroll-fast
 
-   gsap.to(slider, {
-      duration:0.3,
-      //ease:Power1.easeInOut,
-      scrollLeft:scrollLeft - walk,
-   })
-//   console.log(walk);
+  gsap.to(slider, {
+    duration: 0.3,
+    //ease:Power1.easeInOut,
+    scrollLeft: scrollLeft - walk,
+  });
+  //   console.log(walk);
 });
-/*var cursor = document.querySelector("#page11>.page11_inline>.cursor_anim");
-document.addEventListener("mousemove",(e) => {
-   cursor.setAttribute("style", "top: " + (e.clientY-50) + "px; left: " + (e.clientX-30) + "px;")
-})*/
+
+//page12 company logo animation =================================
+gsap.to("#page12>.page12_bottom", {
+  left: 0,
+  duration: 30,
+  delay: 0,
+  repeat: -1,
+  ease: Power0.easeNone,
+});
+
+//page 13 button animation ======================================
+var page13_but = document.querySelector("#page13>button");
+var page13_but_div = document.querySelector("#page13>button>div");
+
+page13_but.addEventListener("mouseenter", (e) => {
+  /*gsap.to(page13_but, {
+   //that is another button animation with css linear gradient
+      ease: Power3.easeInOut,
+      duration: 0.4,
+      background: "linear-gradient(0deg, rgba(10,60,206,1) 0%, rgba(255,255,255,1) 0%)",
+   });*/
+
+  gsap.to("#page13>button>.t2", {
+    top: 0,
+    ease: Power4.easeOut,
+    duration: 0.6,
+  });
+
+  gsap.to(page13_but_div, {
+    y: 30,
+    ease: Power3.easeInOut,
+    duration: 0.3,
+  });
+  gsap.to(page13_but_div, {
+    y: -30,
+    duration: 0,
+    color: "black",
+    delay: 0.3,
+  });
+  gsap.to(page13_but_div, {
+    y: 0,
+    duration: 0.3,
+    delay: 0.3,
+  });
+});
+page13_but.addEventListener("mouseleave", (e) => {
+  /*gsap.to(page13_but, {
+      //that is another button animation with css linear gradient
+         ease: Power3.easeInOut,
+         duration: 0.4,
+         background:"linear-gradient(180deg, rgba(10,60,206,1) 100%, rgba(255,255,255,1) 100%)",
+      })*/
+
+  gsap.to("#page13>button>.t2", {
+    top: "100%",
+    ease: Power4.easeOut,
+    duration: 0.6,
+  });
+
+  gsap.to(page13_but_div, {
+    y: -30,
+    ease: Power3.easeInOut,
+    duration: 0.3,
+  });
+  gsap.to(page13_but_div, {
+    y: 30,
+    duration: 0,
+    color: "white",
+    delay: 0.3,
+  });
+  gsap.to(page13_but_div, {
+    y: 0,
+    duration: 0.3,
+    delay: 0.3,
+  });
+});
