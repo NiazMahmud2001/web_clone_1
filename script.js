@@ -1,14 +1,288 @@
-gsap.registerPlugin(ScrollTrigger, CustomEase);
+gsap.registerPlugin(ScrollTrigger, CustomEase, Observer);
 
-// start page2 gsap code ============================================
+//navbar button animation (book a demo) :=================
+var nav_txt = document.querySelector("#nav>.nav_but>.but1>div");
+var nav_butt = document.querySelector("#nav>.nav_but>.but1");
+
+nav_butt.addEventListener("mouseenter", function (e) {
+  gsap.to(nav_txt, {
+    y: 20,
+    duration: 0.4,
+    ease: Expo.easeInOut,
+  });
+  gsap.to(nav_txt, {
+    opacity: 0,
+    duration: 0,
+    delay: 0.4,
+  });
+  gsap.to(nav_txt, {
+    y: -30,
+    opacity: 0,
+    duration: 0,
+    delay: 0.4,
+  });
+  gsap.to(nav_txt, {
+    y: 0,
+    opacity: 1,
+    duration: 0.2,
+    delay: 0.4,
+    color: "rgb(7, 64, 219)",
+    ease: Expo.easeInOut,
+  });
+});
+
+nav_butt.addEventListener("mouseleave", function (e) {
+  gsap.to(nav_txt, {
+    y: -20,
+    duration: 0.4,
+    ease: Expo.easeInOut,
+  });
+  gsap.to(nav_txt, {
+    opacity: 0,
+    duration: 0,
+    delay: 0.4,
+  });
+  gsap.to(nav_txt, {
+    y: 20,
+    opacity: 0,
+    duration: 0,
+    delay: 0.4,
+  });
+  gsap.to(nav_txt, {
+    y: 0,
+    opacity: 1,
+    duration: 0.2,
+    delay: 0.4,
+    color: "white",
+    ease: Expo.easeInOut,
+  });
+});
+
+//sidebar cross section :===================================
+var i = 0;
+var page1_but = document.querySelector("#nav>.nav_but>.but2");
+var sidebar = document.querySelector("#sidebar");
+var main = document.querySelector("#main");
+
+var page = document.querySelector("#main");
+
+page.addEventListener("click", function (e) {
+  if (i % 2 == 1) {
+    page1_but.style.setProperty("--page1_but_before", "rotateZ(0deg)");
+    page1_but.style.setProperty("--page1_but_after", "rotateZ(0deg)");
+    gsap.to(sidebar, {
+      x: "0%",
+      duration: 0.5,
+    });
+    gsap.to(sidebar, {
+      display: "none",
+      duration: 0,
+      delay: 0.5,
+    });
+    gsap.to(main, {
+      filter: "blur(0px)",
+      duration: 0.5,
+    });
+    gsap.to(["#nav>.nav_but>.but2", "#nav>.nav_but>button"], {
+      backgroundColor: "transparent",
+      duration: 0.5,
+    });
+    i++;
+  }
+});
+page1_but.addEventListener("click", function (e) {
+  if (i % 2 == 0) {
+    page1_but.style.setProperty("--page1_but_before", "rotateZ(27deg)");
+    page1_but.style.setProperty("--page1_but_after", "rotateZ(-27deg)");
+    gsap.to(sidebar, {
+      display: "initial",
+      duration: 0,
+    });
+    gsap.to(sidebar, {
+      x: "-100%",
+      duration: 0.5,
+    });
+    gsap.to(main, {
+      filter: "blur(5px)",
+      duration: 0.5,
+    });
+    gsap.to(["#nav>.nav_but>.but2", "#nav>.nav_but>button"], {
+      backgroundColor: "#0a3cce",
+      duration: 0.5,
+    });
+    i++;
+  } else {
+    page1_but.style.setProperty("--page1_but_before", "rotateZ(0deg)");
+    page1_but.style.setProperty("--page1_but_after", "rotateZ(0deg)");
+    gsap.to(sidebar, {
+      x: "0%",
+      duration: 0.5,
+    });
+    gsap.to(sidebar, {
+      display: "none",
+      duration: 0,
+      delay: 0.5,
+    });
+    gsap.to(main, {
+      filter: "blur(0px)",
+      duration: 0.5,
+    });
+    gsap.to(["#nav>.nav_but>.but2", "#nav>.nav_but>button"], {
+      backgroundColor: "transparent",
+      duration: 0.5,
+    });
+    i++;
+  }
+});
+
+//sidebar content hover animation:=======================================
+document
+  .querySelector(".sidebar_link1>a")
+  .addEventListener("mouseenter", (e) => {
+    gsap.to(".sidebar_link1>a", {
+      color: "rgb(8, 69, 230)",
+      duration: 0.3,
+    });
+  });
+document
+  .querySelector(".sidebar_link1>a")
+  .addEventListener("mouseleave", (e) => {
+    gsap.to(".sidebar_link1>a", {
+      color: "rgb(0,0,0)",
+      duration: 0.3,
+    });
+  });
+document
+  .querySelector(".sidebar_link5>a")
+  .addEventListener("mouseenter", (e) => {
+    gsap.to(".sidebar_link5>a", {
+      color: "rgb(8, 69, 230)",
+      duration: 0.3,
+    });
+  });
+document
+  .querySelector(".sidebar_link5>a")
+  .addEventListener("mouseleave", (e) => {
+    gsap.to(".sidebar_link5>a", {
+      color: "rgb(0,0,0)",
+      duration: 0.3,
+    });
+  });
+document
+  .querySelector(".sidebar_link2>a")
+  .addEventListener("mouseenter", (e) => {
+    gsap.to(".sidebar_link2>a", {
+      color: "rgb(8, 69, 230)",
+      duration: 0.3,
+    });
+  });
+document
+  .querySelector(".sidebar_link2>a")
+  .addEventListener("mouseleave", (e) => {
+    gsap.to(".sidebar_link2>a", {
+      color: "rgb(0,0,0)",
+      duration: 0.3,
+    });
+  });
+document
+  .querySelector(".sidebar_link3>a")
+  .addEventListener("mouseenter", (e) => {
+    gsap.to(".sidebar_link3>a", {
+      color: "rgb(8, 69, 230)",
+      duration: 0.3,
+    });
+  });
+document
+  .querySelector(".sidebar_link3>a")
+  .addEventListener("mouseleave", (e) => {
+    gsap.to(".sidebar_link3>a", {
+      color: "rgb(0,0,0)",
+      duration: 0.3,
+    });
+  });
+document
+  .querySelector(".sidebar_link4>a")
+  .addEventListener("mouseenter", (e) => {
+    gsap.to(".sidebar_link4>a", {
+      color: "rgb(8, 69, 230)",
+      duration: 0.3,
+    });
+  });
+document
+  .querySelector(".sidebar_link4>a")
+  .addEventListener("mouseleave", (e) => {
+    gsap.to(".sidebar_link4>a", {
+      color: "rgb(0,0,0)",
+      duration: 0.3,
+    });
+  });
+
+//page1 button animation ===================================
+var page1_txt = document.querySelector("#page1>div>div>div>button>div");
+var page1_butt = document.querySelector("#page1>div>div>div>button");
+page1_butt.addEventListener("mouseenter", function (e) {
+  gsap.to(page1_txt, {
+    y: 20,
+    duration: 0.4,
+    ease: Expo.easeInOut,
+  });
+  gsap.to(page1_txt, {
+    opacity: 0,
+    duration: 0,
+    delay: 0.4,
+  });
+  gsap.to(page1_txt, {
+    y: -30,
+    opacity: 0,
+    duration: 0,
+    delay: 0.4,
+  });
+  gsap.to(page1_txt, {
+    y: 0,
+    opacity: 1,
+    duration: 0.2,
+    delay: 0.4,
+    color: "white",
+    ease: Expo.easeInOut,
+  });
+});
+
+page1_butt.addEventListener("mouseleave", function (e) {
+  gsap.to(page1_txt, {
+    y: -20,
+    duration: 0.4,
+    ease: Expo.easeInOut,
+  });
+  gsap.to(page1_txt, {
+    opacity: 0,
+    duration: 0,
+    delay: 0.4,
+  });
+  gsap.to(page1_txt, {
+    y: 20,
+    opacity: 0,
+    duration: 0,
+    delay: 0.4,
+  });
+  gsap.to(page1_txt, {
+    y: 0,
+    opacity: 1,
+    duration: 0.2,
+    delay: 0.4,
+    color: "rgb(9, 67, 227)",
+    ease: Expo.easeInOut,
+  });
+});
+
+// page2 animation(textSplit): ==========================================
 var clutter = "";
 document
   .querySelector("#page2>h1")
   .textContent.split(" ")
   .forEach(function (text) {
     clutter += `<span> ${text} </span>`;
+    document.querySelector("#page2>h1").innerHTML = clutter;
   });
-document.querySelector("#page2>h1").innerHTML = clutter;
 
 gsap.to("#page2>h1>span", {
   scrollTrigger: {
@@ -17,15 +291,13 @@ gsap.to("#page2>h1>span", {
     end: "bottom top",
     scroller: "#main",
     scrub: 0.5,
-    // markers: true,
+    //  markers: true,
   },
   stagger: 0.2,
   opacity: 1,
 });
-// end page2 gsap code ============================================
 
-//start page3 canvas code =======================================
-
+//page3 canvas animation:===========================================
 function canvas_3rd_page() {
   const canvas = document.querySelector("#page3>canvas");
   const context = canvas.getContext("2d");
@@ -108,7 +380,6 @@ function canvas_3rd_page() {
  ./pics/frames00199.png
  ./pics/frames00202.png
  `;
-
     return data.split("\n")[index];
   }
 
@@ -174,17 +445,16 @@ function canvas_3rd_page() {
   });
 }
 canvas_3rd_page();
-//end page3 canvas code =====================================
 
-//start page 4 ===============================================
-var clutter1 = "";
+//page4 animation: ==========================================
+var clutter = "";
 document
   .querySelector("#page4>h1")
   .textContent.split(" ")
   .forEach(function (text) {
-    clutter1 += `<span> ${text} </span>`;
+    clutter += `<span> ${text} </span>`;
+    document.querySelector("#page4>h1").innerHTML = clutter;
   });
-document.querySelector("#page4>h1").innerHTML = clutter1;
 
 gsap.to("#page4>h1>span", {
   scrollTrigger: {
@@ -193,14 +463,13 @@ gsap.to("#page4>h1>span", {
     end: "bottom top",
     scroller: "#main",
     scrub: 0.5,
-    // markers: true,
+    //  markers: true,
   },
   stagger: 0.2,
   opacity: 1,
 });
-//end page4 =============================
 
-//start page5 canvas ====================
+//page5 animation: ================================================
 function canvas_5th_page() {
   const canvas = document.querySelector("#page5>canvas");
   const context = canvas.getContext("2d");
@@ -345,7 +614,7 @@ document
   .forEach(function (text) {
     clutter2 += `<span> ${text} </span>`;
   });
-document.querySelector("#page6>h1").innerHTML = clutter1;
+document.querySelector("#page6>h1").innerHTML = clutter2;
 
 gsap.to("#page6>h1>span", {
   scrollTrigger: {
@@ -361,7 +630,33 @@ gsap.to("#page6>h1>span", {
 });
 //end page 6 ==================================
 
-//start page7 =================================
+// page7 circle ===============================
+gsap.to(".page7_cir", {
+  scrollTrigger: {
+    trigger: ".page7_cir",
+    start: "top bottom",
+    end: "bottom top",
+    // markers: true,
+    //pin: true,
+    scrub: true,
+    scroller: "#main",
+  },
+  scale: 2.6,
+});
+gsap.to(".page7_cir_inner", {
+  scrollTrigger: {
+    trigger: ".page7_cir_inner",
+    start: "top bottom",
+    end: "bottom top",
+    // markers: true,
+    //pin: true,
+    scrub: true,
+    scroller: "#main",
+  },
+  backgroundColor: "#0a3bce91",
+});
+
+//page7 background animation: =-=============================================
 function canvas_7th_page() {
   const canvas = document.querySelector("#page7>canvas");
   const context = canvas.getContext("2d");
@@ -377,6 +672,7 @@ function canvas_7th_page() {
 
   function files(index) {
     var data = `
+               ./pics/bridges00004.png 
                https://thisismagma.com/assets/home/lore/seq/1.webp?2
                https://thisismagma.com/assets/home/lore/seq/2.webp?2
                https://thisismagma.com/assets/home/lore/seq/3.webp?2
@@ -517,7 +813,7 @@ function canvas_7th_page() {
     return data.split("\n")[index];
   }
 
-  const frameCount = 136; //enter the number of pics passed inside "files func"
+  const frameCount = 137; //enter the number of pics passed inside "files func"
 
   const images = [];
   const imageSeq = {
@@ -579,423 +875,3 @@ function canvas_7th_page() {
   });
 }
 canvas_7th_page();
-
-// page7 circle ======
-gsap.to(".page7_cir", {
-  scrollTrigger: {
-    trigger: ".page7_cir",
-    start: "top bottom",
-    end: "bottom top",
-    // markers: true,
-    //pin: true,
-    scrub: true,
-    scroller: "#main",
-  },
-  scale: 2.6,
-});
-gsap.to(".page7_cir_inner", {
-  scrollTrigger: {
-    trigger: ".page7_cir_inner",
-    start: "top bottom",
-    end: "bottom top",
-    // markers: true,
-    //pin: true,
-    scrub: true,
-    scroller: "#main",
-  },
-  backgroundColor: "#0a3bce91",
-});
-
-//adding animation in page 9 ===================================
-
-gsap.to("#page9", {
-  scrollTrigger: {
-    trigger: "#page9",
-    start: "top top",
-    end: "bottom 70%",
-    scrub: 0.5,
-    scroller: "#main",
-    // markers:true,
-  },
-  backgroundColor: "rgba(3, 38, 142,1)",
-});
-//adding color animation on page10 =============================
-
-//adding canvas code for page 10 =========================================
-function canvas_10th_page() {
-  const canvas = document.querySelector(
-    "#page10>.page10>.page10_bottom>.page10_right>canvas"
-  );
-  const canvas1 = document.querySelector(
-    "#page10>.page10>.page10_bottom>.page10_right"
-  );
-  const context = canvas.getContext("2d");
-
-  canvas.width = canvas.clientWidth;
-  canvas.height = canvas.clientHeight;
-
-  window.addEventListener("resize", function () {
-    canvas.width = canvas.clientWidth;
-    canvas.height = canvas.clientHeight;
-
-    render();
-  });
-
-  function files(index) {
-    var data = `
-               ./pics/1_1.webp 
-               ./pics/2.webp 
-               ./pics/3.webp 
-               ./pics/4.webp 
-               ./pics/5.webp 
-               ./pics/6.webp 
-               ./pics/7.webp 
-               ./pics/8.webp 
-               ./pics/9.webp 
-               ./pics/10.webp 
-               ./pics/11.webp 
-               ./pics/12.webp 
-               ./pics/13.webp 
-               ./pics/14.webp 
-               ./pics/15.webp 
-               ./pics/16.webp 
-               ./pics/17.webp 
-               ./pics/18.webp 
-               ./pics/19.webp 
-               ./pics/20.webp 
-               ./pics/21.webp 
-               ./pics/22.webp 
-               ./pics/23.webp 
-               ./pics/24.webp 
-               ./pics/25.webp 
-               ./pics/26.webp 
-               ./pics/27.webp 
-               ./pics/28.webp 
-               ./pics/29.webp 
-               ./pics/30.webp 
-               ./pics/31.webp 
-               ./pics/32.webp 
-               ./pics/33.webp 
-               ./pics/34.webp 
-               ./pics/35.webp 
-               ./pics/36.webp 
-               ./pics/37.webp 
-               ./pics/38.webp 
-               ./pics/39.webp 
-               `;
-    return data.split("\n")[index];
-  }
-
-  const frameCount = 38; //enter the number of pics passed inside "files func"
-
-  const images = [];
-  const imageSeq = {
-    frame: 1,
-  };
-
-  for (let i = 0; i < frameCount; i++) {
-    const img = new Image();
-    img.src = files(i);
-    images.push(img);
-  }
-
-  gsap.to(imageSeq, {
-    frame: frameCount - 1,
-    snap: "frame",
-    ease: `none`,
-    scrollTrigger: {
-      scrub: 0.5,
-      trigger: `#page10>.page10>.page10_bottom>.page10_right`,
-      start: `top 20%`,
-      end: `100% bottom`,
-      scroller: `#main`,
-      // markers:true,
-    },
-    onUpdate: render,
-  });
-
-  images[1].onload = render;
-
-  function render() {
-    scaleImage(images[imageSeq.frame], context);
-  }
-
-  function scaleImage(img, ctx) {
-    var canvas = ctx.canvas;
-    var hRatio = canvas.width / img.width;
-    var vRatio = canvas.height / img.height;
-    var ratio = Math.min(hRatio, vRatio);
-    var centerShift_x = (canvas.width - img.width * ratio) / 2;
-    var centerShift_y = (canvas.height - img.height * ratio) / 2;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(
-      img,
-      0,
-      0,
-      img.width,
-      img.height,
-      centerShift_x,
-      centerShift_y,
-      img.width * ratio,
-      img.height * ratio
-    );
-  }
-  ScrollTrigger.create({
-    trigger: "#page10>.page10>.page10_bottom>.page10_right",
-    pin: true,
-    scroller: `#main`,
-    start: `top 20%`,
-    end: `100% bottom`,
-  });
-}
-canvas_10th_page();
-
-//gsap on page10 txt====
-gsap.to(".page10_01", {
-  color: "rgba(255,255,255,1)",
-  scrollTrigger: {
-    trigger: ".page10_01",
-    start: "top 70%",
-    end: "top 40%",
-    scroller: "#main",
-    scrub: true,
-    // markers: true,
-    onLeave: () => {
-      gsap.to(".page10_01", {
-        color: "rgba(255,255,255,0.3)",
-        scrollTrigger: {
-          trigger: ".page10_01",
-          start: "top 15%",
-          end: "top 5%",
-          scroller: "#main",
-          scrub: true,
-          // markers: true,
-        },
-      });
-    },
-  },
-});
-gsap.to(".page10_02", {
-  color: "rgba(255,255,255,1)",
-  scrollTrigger: {
-    trigger: ".page10_02",
-    start: "top 70%",
-    end: "top 40%",
-    scroller: "#main",
-    scrub: true,
-    // markers: true,
-    onLeave: () => {
-      gsap.to(".page10_02", {
-        color: "rgba(255,255,255,0.3)",
-        scrollTrigger: {
-          trigger: ".page10_02",
-          start: "top 15%", //that line determine where your canvas stops and start animation
-          end: "top 5%", //that line determine where your canvas stops and start animation
-          scroller: "#main",
-          scrub: true,
-          // markers: true,
-        },
-      });
-    },
-  },
-});
-gsap.to(".page10_03", {
-  color: "rgba(255,255,255,1)",
-  scrollTrigger: {
-    trigger: ".page10_03",
-    start: "top 70%",
-    end: "top 40%",
-    scroller: "#main",
-    scrub: true,
-    // markers: true,
-    onLeave: () => {
-      gsap.to(".page10_03", {
-        color: "rgba(255,255,255,0.3)",
-        scrollTrigger: {
-          trigger: ".page10_03",
-          start: "top 15%",
-          end: "top 5%",
-          scroller: "#main",
-          scrub: true,
-          // markers: true,
-        },
-      });
-    },
-  },
-});
-gsap.to(".page10_04", {
-  color: "rgba(255,255,255,1)",
-  scrollTrigger: {
-    trigger: ".page10_04",
-    start: "top 70%",
-    end: "top 40%",
-    scroller: "#main",
-    scrub: true,
-    // markers: true,
-    onLeave: () => {
-      gsap.to(".page10_04", {
-        color: "rgba(255,255,255,0.3)",
-        scrollTrigger: {
-          trigger: ".page10_04",
-          start: "top 15%", //that line determine where your canvas stops and start animation
-          end: "top 5%", //that line determine where your canvas stops and start animation
-          scroller: "#main",
-          scrub: true,
-          // markers: true,
-        },
-      });
-    },
-  },
-});
-
-// page11 cursor animation ======================================
-//grab and slide ====
-const slider = document.querySelector(".page11_inline");
-let isDown = false;
-let startX;
-let scrollLeft;
-
-slider.addEventListener("mousedown", (e) => {
-  isDown = true;
-  slider.classList.add("active");
-  startX = e.pageX - slider.offsetLeft;
-  scrollLeft = slider.scrollLeft;
-  slider.computedStyleMap.cursor = "grabbing";
-});
-slider.addEventListener("mouseleave", () => {
-  isDown = false;
-  slider.computedStyleMap.cursor = "grab";
-});
-slider.addEventListener("mouseup", () => {
-  isDown = false;
-  slider.computedStyleMap.cursor = "grab";
-});
-slider.addEventListener("mousemove", (e) => {
-  if (!isDown) return;
-  e.preventDefault();
-  const x = e.pageX - slider.offsetLeft;
-  const walk = (x - startX) * 2; //controls scroll-fast
-
-  gsap.to(slider, {
-    duration: 0.3,
-    //ease:Power1.easeInOut,
-    scrollLeft: scrollLeft - walk,
-  });
-  //   console.log(walk);
-});
-
-//page12 company logo animation =================================
-gsap.to("#page12>.page12_bottom", {
-  left: 0,
-  duration: 30,
-  delay: 0,
-  repeat: -1,
-  ease: Power0.easeNone,
-});
-
-//page 13 button animation ======================================
-var page13_but = document.querySelector("#page13>button");
-var page13_but_div = document.querySelector("#page13>button>div");
-
-page13_but.addEventListener("mouseenter", (e) => {
-  /*gsap.to(page13_but, {
-   //that is another button animation with css linear gradient
-      ease: Power3.easeInOut,
-      duration: 0.4,
-      background: "linear-gradient(0deg, rgba(10,60,206,1) 0%, rgba(255,255,255,1) 0%)",
-   });*/
-
-  gsap.to("#page13>button>.t2", {
-    top: 0,
-    ease: Power4.easeOut,
-    duration: 0.6,
-  });
-
-  gsap.to(page13_but_div, {
-    y: 30,
-    ease: Power3.easeInOut,
-    duration: 0.3,
-  });
-  gsap.to(page13_but_div, {
-    y: -30,
-    duration: 0,
-    color: "black",
-    delay: 0.3,
-  });
-  gsap.to(page13_but_div, {
-    y: 0,
-    duration: 0.3,
-    delay: 0.3,
-  });
-});
-page13_but.addEventListener("mouseleave", (e) => {
-  /*gsap.to(page13_but, {
-      //that is another button animation with css linear gradient
-         ease: Power3.easeInOut,
-         duration: 0.4,
-         background:"linear-gradient(180deg, rgba(10,60,206,1) 100%, rgba(255,255,255,1) 100%)",
-      })*/
-
-  gsap.to("#page13>button>.t2", {
-    top: "100%",
-    ease: Power4.easeOut,
-    duration: 0.6,
-  });
-
-  gsap.to(page13_but_div, {
-    y: -30,
-    ease: Power3.easeInOut,
-    duration: 0.3,
-  });
-  gsap.to(page13_but_div, {
-    y: 30,
-    duration: 0,
-    color: "white",
-    delay: 0.3,
-  });
-  gsap.to(page13_but_div, {
-    y: 0,
-    duration: 0.3,
-    delay: 0.3,
-  });
-});
-
-//page14 hover animation ===============================
-var twitter = document.querySelector("#page14>.page14_top>.page14_twitter");
-var linkedin = document.querySelector("#page14>.page14_top>.page14_linkedin");
-var instagram = document.querySelector("#page14>.page14_top>.page14_instagram");
-
-twitter.addEventListener("mouseenter", (e) => {
-  gsap.to("#page14>.page14_top>.page14_twitter>a>.page14_cont>.page14_effect", {
-    height: "14.5vh",
-    duration: 0.3,
-    //ease: Power4.easeInOut,
-  });
-});
-twitter.addEventListener("mouseleave", (e) => {
-  gsap.to("#page14>.page14_top>.page14_twitter>a>.page14_cont>.page14_effect", {
-    height: "0vh",
-    duration: 0.3,
-    //ease: Power4.easeInOut,
-  });
-});
-linkedin.addEventListener("mouseenter", (e) => {
-  gsap.to(
-    "#page14>.page14_top>.page14_linkedin>a>.page14_cont>.page14_effect",
-    {
-      height: "14.5vh",
-      duration: 0.3,
-      //ease: Power4.easeInOut,
-    }
-  );
-});
-linkedin.addEventListener("mouseleave", (e) => {
-  gsap.to(
-    "#page14>.page14_top>.page14_linkedin>a>.page14_cont>.page14_effect",
-    {
-      height: "0vh",
-      duration: 0.3,
-      //ease: Power4.easeInOut,
-    }
-  );
-});
