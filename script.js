@@ -60,15 +60,26 @@ var init = () => {
   });
 
   //sidebar cross section :===================================
-  var i = 0;
+  var iii = 0;
   var page1_but = document.querySelector("#nav>.nav_but>.but2");
   var sidebar = document.querySelector("#sidebar");
   var main = document.querySelector("#main");
 
   var page = document.querySelector("#main");
 
+  function disable() {
+    var TopScroll = document.documentElement.scrollTop;
+    var LeftScroll = document.documentElement.scrollLeft;
+    window.onscroll = function () {
+      window.scrollTo(LeftScroll, TopScroll);
+    };
+  }
+  function enable() {
+    window.onscroll = function () {};
+  }
+
   page.addEventListener("click", function (e) {
-    if (i % 2 == 1) {
+    if (iii % 2 == 1) {
       page1_but.style.setProperty("--page1_but_before", "rotateZ(0deg)");
       page1_but.style.setProperty("--page1_but_after", "rotateZ(0deg)");
       gsap.to(sidebar, {
@@ -81,20 +92,21 @@ var init = () => {
         delay: 0.5,
       });
       gsap.to(main, {
-        filter: "blur(0px)",
+        filter: "none",
         duration: 0.5,
         height: "100%",
-        overflow: "scroll",
+        //onUpdate: enable(),
+        overflow: "visible",
       });
       gsap.to(["#nav>.nav_but>.but2", "#nav>.nav_but>button"], {
         backgroundColor: "transparent",
         duration: 0.5,
       });
-      i++;
+      iii++;
     }
   });
   page1_but.addEventListener("click", function (e) {
-    if (i % 2 == 0) {
+    if (iii % 2 == 0) {
       page1_but.style.setProperty("--page1_but_before", "rotateZ(27deg)");
       page1_but.style.setProperty("--page1_but_after", "rotateZ(-27deg)");
       gsap.to(sidebar, {
@@ -108,14 +120,15 @@ var init = () => {
       gsap.to(main, {
         filter: "blur(5px)",
         duration: 0.5,
-        height: "100%",
-        overflow: "scroll",
+        height: "106vh",
+        //onUpdate: disable(),
+        overflow: "hidden",
       });
       gsap.to(["#nav>.nav_but>.but2", "#nav>.nav_but>button"], {
         backgroundColor: "#0a3cce",
         duration: 0.5,
       });
-      i++;
+      iii++;
     } else {
       page1_but.style.setProperty("--page1_but_before", "rotateZ(0deg)");
       page1_but.style.setProperty("--page1_but_after", "rotateZ(0deg)");
@@ -129,16 +142,17 @@ var init = () => {
         delay: 0.5,
       });
       gsap.to(main, {
-        filter: "blur(0px)",
+        filter: "none",
         duration: 0.5,
         height: "100%",
-        overflow: "scroll",
+        //onUpdate: enable(),
+        overflow: "visible",
       });
       gsap.to(["#nav>.nav_but>.but2", "#nav>.nav_but>button"], {
         backgroundColor: "transparent",
         duration: 0.5,
       });
-      i++;
+      iii++;
     }
   });
 
@@ -1125,7 +1139,7 @@ var init = () => {
   }
   canvas_10th_page();
 
-  //gsap on page10 txt====
+  //gsap on page10 txt====>>>================>>====
   gsap.to(".page10_01", {
     color: "rgba(255,255,255,1)",
     scrollTrigger: {
@@ -1223,8 +1237,170 @@ var init = () => {
     },
   });
 
-  document.querySelector("#page8>div").addEventListener("click", () => {
-    //console.log("dsga");
+  //page11 animation ===============>>>==============>>>===========
+  //grab and slide ====
+  const slider = document.querySelector(".page11_inline");
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  slider.addEventListener("mousedown", (e) => {
+    isDown = true;
+    slider.classList.add("active");
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+    slider.computedStyleMap.cursor = "grabbing";
+  });
+  slider.addEventListener("mouseleave", () => {
+    isDown = false;
+    slider.computedStyleMap.cursor = "grab";
+  });
+  slider.addEventListener("mouseup", () => {
+    isDown = false;
+    slider.computedStyleMap.cursor = "grab";
+  });
+  slider.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 2; //controls scroll-fast
+
+    gsap.to(slider, {
+      duration: 0.3,
+      //ease:Power1.easeInOut,
+      scrollLeft: scrollLeft - walk,
+    });
+    //   console.log(walk);
+  });
+
+  //page12 company logo animation =================================
+  gsap.to("#page12>.page12_bottom", {
+    left: 0,
+    duration: 30,
+    delay: 0,
+    repeat: -1,
+    ease: Power0.easeNone,
+  });
+
+  //page 13 button animation ======================================
+  var page13_but = document.querySelector("#page13>button");
+  var page13_but_div = document.querySelector("#page13>button>div");
+
+  page13_but.addEventListener("mouseenter", (e) => {
+    gsap.to("#page13>button>.t2", {
+      top: 0,
+      ease: Power4.easeOut,
+      duration: 0.6,
+    });
+
+    gsap.to(page13_but_div, {
+      y: 30,
+      ease: Power3.easeInOut,
+      duration: 0.3,
+    });
+    gsap.to(page13_but_div, {
+      y: -30,
+      duration: 0,
+      color: "black",
+      delay: 0.3,
+    });
+    gsap.to(page13_but_div, {
+      y: 0,
+      duration: 0.3,
+      delay: 0.3,
+    });
+  });
+  page13_but.addEventListener("mouseleave", (e) => {
+    gsap.to("#page13>button>.t2", {
+      top: "100%",
+      ease: Power4.easeOut,
+      duration: 0.6,
+    });
+
+    gsap.to(page13_but_div, {
+      y: -30,
+      ease: Power3.easeInOut,
+      duration: 0.3,
+    });
+    gsap.to(page13_but_div, {
+      y: 30,
+      duration: 0,
+      color: "white",
+      delay: 0.3,
+    });
+    gsap.to(page13_but_div, {
+      y: 0,
+      duration: 0.3,
+      delay: 0.3,
+    });
+  });
+
+  //page14 hover animation ===============================
+  var twitter = document.querySelector("#page14>.page14_top>.page14_twitter");
+  var linkedin = document.querySelector("#page14>.page14_top>.page14_linkedin");
+  var instagram = document.querySelector(
+    "#page14>.page14_top>.page14_instagram"
+  );
+
+  twitter.addEventListener("mouseenter", (e) => {
+    gsap.to(
+      "#page14>.page14_top>.page14_twitter>a>.page14_cont>.page14_effect",
+      {
+        height: "100%",
+        duration: 0.3,
+        //ease: Power4.easeInOut,
+      }
+    );
+  });
+  twitter.addEventListener("mouseleave", (e) => {
+    gsap.to(
+      "#page14>.page14_top>.page14_twitter>a>.page14_cont>.page14_effect",
+      {
+        height: "0vh",
+        duration: 0.3,
+        //ease: Power4.easeInOut,
+      }
+    );
+  });
+  linkedin.addEventListener("mouseenter", (e) => {
+    gsap.to(
+      "#page14>.page14_top>.page14_linkedin>a>.page14_cont>.page14_effect",
+      {
+        height: "100%",
+        duration: 0.3,
+        //ease: Power4.easeInOut,
+      }
+    );
+  });
+  linkedin.addEventListener("mouseleave", (e) => {
+    gsap.to(
+      "#page14>.page14_top>.page14_linkedin>a>.page14_cont>.page14_effect",
+      {
+        height: "0vh",
+        duration: 0.3,
+        //ease: Power4.easeInOut,
+      }
+    );
+  });
+  instagram.addEventListener("mouseenter", (e) => {
+    gsap.to(
+      "#page14>.page14_top>.page14_instagram>a>.page14_cont>.page14_effect",
+      {
+        height: "100%",
+        duration: 0.3,
+        //ease: Power4.easeInOut,
+      }
+    );
+  });
+  instagram.addEventListener("mouseleave", (e) => {
+    gsap.to(
+      "#page14>.page14_top>.page14_instagram>a>.page14_cont>.page14_effect",
+      {
+        height: "0vh",
+        duration: 0.3,
+        //ease: Power4.easeInOut,
+      }
+    );
   });
 };
 
